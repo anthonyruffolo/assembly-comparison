@@ -1,9 +1,131 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Assembly Comparison</title>
+    <meta charset="UTF-8">
+    <title>x86-64 vs ARM64 Assembly Comparison</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Hello world</h1>
+
+<header>
+    <h1>x86-64 vs ARM64 (AArch64)</h1>
+    <p class="subtitle">A Comparative Study of CISC and RISC Architectures</p>
+</header>
+
+<section class="section">
+    <h2>Architecture Overview</h2>
+    <table class="comparison-table">
+        <tr>
+            <th>Feature</th>
+            <th>x86-64</th>
+            <th>ARM64 (AArch64)</th>
+        </tr>
+        <tr>
+            <td>Architecture Type</td>
+            <td>CISC</td>
+            <td>RISC</td>
+        </tr>
+        <tr>
+            <td>Instruction Length</td>
+            <td>Variable (1–15 bytes)</td>
+            <td>Fixed (32-bit)</td>
+        </tr>
+        <tr>
+            <td>General Purpose Registers</td>
+            <td>16 (rax, rbx, rcx...)</td>
+            <td>31 (x0–x30)</td>
+        </tr>
+        <tr>
+            <td>Calling Convention</td>
+            <td>System V / Microsoft</td>
+            <td>AAPCS64</td>
+        </tr>
+        <tr>
+            <td>Return Address</td>
+            <td>Pushed to stack</td>
+            <td>Stored in Link Register (x30)</td>
+        </tr>
+    </table>
+</section>
+
+<section class="section">
+    <h2>Code Construct Explorer</h2>
+
+    <div class="button-group">
+        <button onclick="showExample('assignment')">Assignment</button>
+        <button onclick="showExample('if')">If Statement</button>
+        <button onclick="showExample('loop')">For Loop</button>
+        <button onclick="showExample('function')">Function Call</button>
+    </div>
+
+    <div class="code-container">
+        <div class="code-block">
+            <h3>C Code</h3>
+            <pre id="c-code"></pre>
+        </div>
+
+        <div class="code-block">
+            <h3>x86-64</h3>
+            <pre id="x86-code"></pre>
+        </div>
+
+        <div class="code-block">
+            <h3>ARM64</h3>
+            <pre id="arm-code"></pre>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <h2>Calling Convention Comparison</h2>
+    <div class="side-by-side">
+        <div>
+            <h3>x86-64 (System V)</h3>
+            <ul>
+                <li>Arguments: rdi, rsi, rdx, rcx, r8, r9</li>
+                <li>Return value: rax</li>
+                <li>Stack used for overflow arguments</li>
+                <li>Return address pushed onto stack</li>
+            </ul>
+        </div>
+        <div>
+            <h3>ARM64 (AAPCS64)</h3>
+            <ul>
+                <li>Arguments: x0–x7</li>
+                <li>Return value: x0</li>
+                <li>Link register (x30) stores return address</li>
+                <li>Stack used when registers exceed capacity</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <h2>Stack Frame Visualization</h2>
+
+    <div class="stack-container">
+        <div class="stack">
+            <h3>x86-64 Stack</h3>
+            <div class="stack-box">Arguments</div>
+            <div class="stack-box">Return Address</div>
+            <div class="stack-box">Saved RBP</div>
+            <div class="stack-box">Local Variables</div>
+        </div>
+
+        <div class="stack">
+            <h3>ARM64 Stack</h3>
+            <div class="stack-box">Arguments (if needed)</div>
+            <div class="stack-box">Saved x29 (FP)</div>
+            <div class="stack-box">Saved x30 (LR)</div>
+            <div class="stack-box">Local Variables</div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>Software Reverse Engineering Project</p>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
