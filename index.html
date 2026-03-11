@@ -34,7 +34,7 @@
         <tr>
             <td>General Purpose Registers</td>
             <td>16 (rax, rbx, rcx...)</td>
-            <td>31 (x0–x30)</td>
+            <td>31 general-purpose registers (x0–x30)</td>
         </tr>
         <tr>
             <td>Calling Convention</td>
@@ -44,7 +44,7 @@
         <tr>
             <td>Return Address</td>
             <td>Pushed to stack</td>
-            <td>Stored in Link Register (x30)</td>
+            <td>Stored in Link Register (x30), saved to stack if function calls another function</td>
         </tr>
     </table>
 </section>
@@ -90,6 +90,7 @@
                 <li>Return value: rax</li>
                 <li>Stack used for overflow arguments</li>
                 <li>Return address pushed onto stack</li>
+                <li>Stack must be 16-byte aligned before call</li>
             </ul>
         </div>
         <div>
@@ -99,6 +100,7 @@
                 <li>Return value: x0</li>
                 <li>Link register (x30) stores return address</li>
                 <li>Stack used when registers exceed capacity</li>
+                <li>Stack must remain 16-byte aligned at all times</li>
             </ul>
         </div>
     </div>
@@ -110,7 +112,7 @@
     <div class="stack-container">
         <div class="stack">
             <h3>x86-64 Stack</h3>
-            <div class="stack-box">Arguments</div>
+            <div class="stack-box">Stack Arguments (if any)</div>
             <div class="stack-box">Return Address</div>
             <div class="stack-box">Saved RBP</div>
             <div class="stack-box">Local Variables</div>
@@ -118,9 +120,9 @@
 
         <div class="stack">
             <h3>ARM64 Stack</h3>
-            <div class="stack-box">Arguments (if needed)</div>
-            <div class="stack-box">Saved x29 (FP)</div>
-            <div class="stack-box">Saved x30 (LR)</div>
+            <div class="stack-box">Stack Arguments (if any)</div>
+            <div class="stack-box">Saved x29 (FP, if used)</div>
+            <div class="stack-box">Saved x30 (LR, if needed)</div>
             <div class="stack-box">Local Variables</div>
         </div>
     </div>
@@ -136,7 +138,7 @@
                 <li>Complex addressing modes</li>
                 <li>Fewer general-purpose registers</li>
                 <li>Higher instruction density</li>
-                <li>More work per instruction</li>
+                <li>Architecturally complex instructions</li>
             </ul>
         </div>
         <div>
@@ -146,7 +148,7 @@
                 <li>Load/store architecture</li>
                 <li>More general-purpose registers</li>
                 <li>Simpler decoding pipeline</li>
-                <li>Compiler-dependent optimization</li>
+                <li>Emphasis on compiler optimization</li>
             </ul>
         </div>
     </div>
@@ -170,7 +172,7 @@ B8 05 00 00 00</pre>
 
         <div class="code-block">
             <h3>ARM64 Encoding</h3>
-            <pre>mov w0, #5
+            <pre>movz w0, #5
 52 80 00 20</pre>
         </div>
     </div>
