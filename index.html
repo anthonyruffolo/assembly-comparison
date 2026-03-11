@@ -56,6 +56,9 @@
         <button onclick="showExample('if')">If Statement</button>
         <button onclick="showExample('loop')">For Loop</button>
         <button onclick="showExample('function')">Function Call</button>
+        <button onclick="showExample('while')">While Loop</button>
+        <button onclick="showExample('switch')">Switch</button>
+        <button onclick="showExample('parameters')">Parameter Passing</button>
     </div>
 
     <div class="code-container">
@@ -122,6 +125,56 @@
     </div>
 </section>
 
+<section class="section">
+    <h2>RISC vs CISC Design Philosophy</h2>
+    <div class="side-by-side">
+        <div>
+            <h3>x86-64 (CISC)</h3>
+            <ul>
+                <li>Variable-length instructions</li>
+                <li>Complex addressing modes</li>
+                <li>Fewer general-purpose registers</li>
+                <li>Higher instruction density</li>
+                <li>More work per instruction</li>
+            </ul>
+        </div>
+        <div>
+            <h3>ARM64 (RISC)</h3>
+            <ul>
+                <li>Fixed 32-bit instruction size</li>
+                <li>Load/store architecture</li>
+                <li>More general-purpose registers</li>
+                <li>Simpler decoding pipeline</li>
+                <li>Compiler-dependent optimization</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <h2>Instruction Encoding Comparison</h2>
+    <p>
+        x86 uses variable-length instruction encoding (1–15 bytes),
+        allowing compact instruction sequences but increasing decoding complexity.
+        ARM64 uses fixed 32-bit instructions, simplifying pipeline decoding
+        and improving predictability.
+    </p>
+
+    <div class="code-container">
+        <div class="code-block">
+            <h3>x86 Encoding</h3>
+            <pre>mov eax, 5
+B8 05 00 00 00</pre>
+        </div>
+
+        <div class="code-block">
+            <h3>ARM64 Encoding</h3>
+            <pre>mov w0, #5
+52 80 00 20</pre>
+        </div>
+    </div>
+</section>
+    
 <footer>
     <p>Software Reverse Engineering Project</p>
 </footer>
